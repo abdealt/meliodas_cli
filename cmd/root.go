@@ -7,35 +7,37 @@ import (
 
 	"github.com/abdealt/meliodas_cli/config"
 	"github.com/common-nighthawk/go-figure"
-	"github.com/joho/godotenv"
 	"github.com/spf13/cobra"
 )
 
+// Définir la commande root
 var rootCmd = &cobra.Command{
 	Use:   "meliodas",
-	Short: "Meliodas CLI",
-	Long:  `Meliodas CLI est une application permettant d'exécuter des commandes pour extraire des données depuis un fichier CSV.`,
-	// Exécution avant toute commande pour charger les variables d'environnement
+	Short: "\nUn CLI pour lire un fichier",
+	Long:  "\nMeliodas CLI est un outil en ligne de commande simple et efficace conçu pour automatiser le traitement de fichiers CSV.\nIl permet aux utilisateurs d'extraire rapidement des données spécifiques à partir de fichiers, sans avoir à ouvrir un logiciel complexe.",
 	PersistentPreRun: func(cmd *cobra.Command, args []string) {
-		// Charger le fichier .env qui est dans le même répertoire que root.go
-		err := godotenv.Load()
+		// Chemin du fichier (ajuster en fonction de votre fichier)
+		filePath := "C:\\Users\\Utilisateur\\Desktop\\MELIODAS\\meliodas_cli\\.env"
+
+		// Ouvrir le fichier
+		file, err := os.Open(filePath)
 		if err != nil {
-			log.Fatalf("Erreur lors du chargement du fichier .env : %v", err)
+			log.Fatalf("\nErreur lors de l'ouverture du fichier : %v", err)
 		}
-		fmt.Println("Fichier .env chargé avec succès")
+		defer file.Close()
+
+		fmt.Println("Le fichier environnement est lu.")
+
 	},
 }
 
-// Exécuter rootCmd
-func Execute() {
-	if err := rootCmd.Execute(); err != nil {
-		fmt.Println(err)
-		os.Exit(1)
-	}
+// Exécuter la commande root
+func Execute() error {
+	return rootCmd.Execute()
 }
 
 func init() {
-	// Afficher le logo Meliodas
-	myFigure := figure.NewFigure(config.AppDisplayName, "", true)
-	myFigure.Print()
+	// Affichage du logo
+	myLogo := figure.NewFigure(config.AppDisplayName, "", true)
+	myLogo.Print()
 }

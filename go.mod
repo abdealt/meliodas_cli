@@ -7,7 +7,7 @@ require (
 	github.com/spf13/cobra v1.8.1
 )
 
-require github.com/joho/godotenv v1.5.1 // indirect
+require github.com/joho/godotenv v1.5.1
 
 require (
 	github.com/abdealt/meliodas v0.2.0
