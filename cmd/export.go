@@ -10,11 +10,12 @@ import (
 // exportCmd represents the export command
 var exportCmd = &cobra.Command{
 	Use:   "export",
-	Short: "Cette commande sert a exporter les données.",
-	Long:  `Cette commande sert a exporter les données. Grace au fichie .env de Meliodas, on definit sur quoi on export, le fichier source et le lieu ou seront extraite les données.`,
+	Short: "Cette commande sert à exporter les données.",
+	Long:  `Cette commande sert à exporter les données. Grâce au fichier .env de Meliodas, on définit sur quoi on exporte, le fichier source et le lieu où seront extraites les données.`,
 	Run: func(cmd *cobra.Command, args []string) {
 		fmt.Println("Début du traitement")
 		components.ReadCSVFileContentAndExtracter()
+		fmt.Println("Fin du traitement")
 	},
 }
 
