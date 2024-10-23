@@ -14,7 +14,7 @@ var statCmd = &cobra.Command{
 	Run: func(cmd *cobra.Command, args []string) {
 		fmt.Println("La commande stat est éxécutée.")
 		// Logique pour afficher les statistiques
-		fmt.Printf("Il y a %v éléments totaux dans le fichier source. Sur tous ces éléments, il y a %v éléments exportés.", components.ComptTotal, components.ComptElement)
+		fmt.Printf("Il y a %v éléments totaux dans le fichier source. Sur tous ces éléments, il y a %v éléments exportés.\n", components.ComptTotal, components.ComptElement)
 	},
 }
 

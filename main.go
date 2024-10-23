@@ -19,13 +19,13 @@ func main() {
 	// Boucle d'exécution continue
 	for {
 		// Demander une commande à l'utilisateur
-		fmt.Print("Entrez une commande ('export', 'stat', 'lstDpt' , 'help' ou 'exit' pour quitter) : ")
+		fmt.Print("\nEntrez une commande ('export', 'stat', 'lstdpt' , 'help' ou 'exit' pour quitter) : ")
 		input, _ := reader.ReadString('\n') // Lire l'entrée utilisateur
 		input = strings.TrimSpace(input)    // Supprimer les espaces inutiles
 
 		// Si l'utilisateur tape "exit", sortir du programme
 		if input == "exit" {
-			fmt.Println("Au revoir!")
+			fmt.Println("Fermeture de l'application.")
 			os.Exit(0)
 		}
 
