@@ -14,10 +14,10 @@ var TotalElements int
 var ExtractedElements int
 
 // Définir la commande root
-var rootCmd = &cobra.Command{
+var RootCmd = &cobra.Command{
 	Use:   "meliodas",
 	Short: "\nUn CLI pour lire un fichier",
-	Long:  "\nMeliodas CLI est un outil en ligne de commande simple et efficace conçu pour automatiser le traitement de fichiers CSV.\nIl permet aux utilisateurs d'extraire rapidement des données spécifiques à partir de fichiers, sans avoir à ouvrir un logiciel complexe.",
+	Long:  "\nMeliodas CLI est un outil en ligne de commande simple et efficace conçu pour automatiser le traitement de fichiers CSV.\nIl permet aux utilisateurs d'extraire rapidement des données spécifiques à partir de fichiers, sans avoir à ouvrir un logiciel complexe.\n\nSi vous souahitez changer d'opération, il faut changer le fichier de configuration, pour spécifier le (ou les) DÉPARTEMENT(S) de votre choix, ou le (ou les) codes INSEE(S) de votre choix.\n\n",
 	PersistentPreRun: func(cmd *cobra.Command, args []string) {
 		// Chemin du fichier .env (à ajuster selon le fichier)
 		filePath := "C:\\Users\\Utilisateur\\Desktop\\MELIODAS\\meliodas_cli\\.env"
@@ -38,5 +38,5 @@ func init() {
 
 // Exécuter la commande root
 func Execute() error {
-	return rootCmd.Execute()
+	return RootCmd.Execute()
 }

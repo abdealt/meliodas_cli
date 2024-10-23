@@ -10,27 +10,34 @@ import (
 )
 
 func main() {
-	fmt.Println("Bienvenue dans l'application CLI MELIODAS.")
+	// Afficher le logo défini dans le fichier root.go lors du démarrage
+	fmt.Println("Bienvenue dans Meliodas CLI!")
+
+	// Créer un reader pour capturer l'entrée utilisateur en continu
 	reader := bufio.NewReader(os.Stdin)
 
+	// Boucle d'exécution continue
 	for {
-		fmt.Print("\nEntrez une commande ('export', 'stat', 'help', 'exit') : ")
-		input, _ := reader.ReadString('\n')
-		input = strings.TrimSpace(input)
+		// Demander une commande à l'utilisateur
+		fmt.Print("Entrez une commande ('export', 'stat', 'lstDpt' , 'help' ou 'exit' pour quitter) : ")
+		input, _ := reader.ReadString('\n') // Lire l'entrée utilisateur
+		input = strings.TrimSpace(input)    // Supprimer les espaces inutiles
 
-		// Vérification de l'entrée utilisateur
-		switch input {
-		case "exit":
-			fmt.Println("Sortie de l'application.")
-			return
-		case "help":
-			// Affichage de la desxription etc..
-			cmd.Execute()
-		default:
-			// Simulation de l'appel de la commande avec Cobra
-			args := strings.Split(input, " ")
-			os.Args = append([]string{"meliodas"}, args...)
-			cmd.Execute()
+		// Si l'utilisateur tape "exit", sortir du programme
+		if input == "exit" {
+			fmt.Println("Au revoir!")
+			os.Exit(0)
+		}
+
+		// Diviser l'entrée utilisateur en arguments
+		args := strings.Split(input, " ")
+
+		// Passer les arguments à la commande root définie dans le fichier root.go
+		cmd.RootCmd.SetArgs(args)
+
+		// Exécuter la commande et gérer les erreurs
+		if err := cmd.Execute(); err != nil {
+			fmt.Printf("Erreur lors de l'exécution de la commande : %v\n", err)
 		}
 	}
 }

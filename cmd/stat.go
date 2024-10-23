@@ -12,11 +12,9 @@ var statCmd = &cobra.Command{
 	Use:   "stat",
 	Short: "Cette commande sert à afficher les statistiques obtenues lors du dernier traitement.",
 	Run: func(cmd *cobra.Command, args []string) {
-		// Affichage de l'état
-		fmt.Printf("Commande 'stat' exécutée\n")
-
-		// Affichage des statistiques
-		components.GetStats() // Récupérer les statistiques
+		fmt.Println("La commande stat est éxécutée.")
+		// Logique pour afficher les statistiques
+		fmt.Printf("Il y a %v éléments totaux dans le fichier source. Sur tous ces éléments, il y a %v éléments exportés.", components.ComptTotal, components.ComptElement)
 	},
 }
 
@@ -26,5 +24,5 @@ func ExecuteStat() error {
 }
 
 func init() {
-	rootCmd.AddCommand(statCmd)
+	RootCmd.AddCommand(statCmd)
 }

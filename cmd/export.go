@@ -16,9 +16,9 @@ var exportCmd = &cobra.Command{
 		fmt.Println("Traitement en cours...")
 		components.ReadCSVFileContentAndExtracter()
 
-		// Simuler l'ajout d'éléments
-		TotalElements += 100    // Exemple
-		ExtractedElements += 50 // Exemple
+		// Après le traitemnt, on exécute LogWriter pour enregistrer dansle fichier log
+		components.LogWriter()
+		defer components.LogWriter()
 
 		fmt.Println("Fin du traitement")
 	},
@@ -29,5 +29,5 @@ func ExecuteExport() error {
 }
 
 func init() {
-	rootCmd.AddCommand(exportCmd)
+	RootCmd.AddCommand(exportCmd)
 }
