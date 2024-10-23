@@ -1,6 +1,3 @@
-/*
-Copyright © 2024 NAME HERE <EMAIL ADDRESS>
-*/
 package cmd
 
 import (
@@ -10,27 +7,24 @@ import (
 	"github.com/spf13/cobra"
 )
 
-// statCmd represents the stat command
+// statCmd est la commande stat ici les infos et propriétés
 var statCmd = &cobra.Command{
 	Use:   "stat",
-	Short: "Cette commande sert a afficher les statistique obtenus lors du dernier traitement.",
+	Short: "Cette commande sert à afficher les statistiques obtenues lors du dernier traitement.",
 	Run: func(cmd *cobra.Command, args []string) {
-		fmt.Printf("Commande 'stat' est écécuté\n")
-		// TODO: Implement your logic here
-		fmt.Printf("Il y'a au total %v éléments dans le fichier source. %v éléments de ce fichier ont été extraits.", components.ComptTotal, components.ComptElement)
+		// Affichage de l'état
+		fmt.Printf("Commande 'stat' exécutée\n")
+
+		// Affichage des statistiques
+		components.GetStats() // Récupérer les statistiques
 	},
+}
+
+// Fonction lors de l'appel de la commande
+func ExecuteStat() error {
+	return statCmd.Execute()
 }
 
 func init() {
 	rootCmd.AddCommand(statCmd)
-
-	// Here you will define your flags and configuration settings.
-
-	// Cobra supports Persistent Flags which will work for this command
-	// and all subcommands, e.g.:
-	// statCmd.PersistentFlags().String("foo", "", "A help for foo")
-
-	// Cobra supports local flags which will only run when this command
-	// is called directly, e.g.:
-	// statCmd.Flags().BoolP("toggle", "t", false, "Help message for toggle")
 }
