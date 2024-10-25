@@ -41,15 +41,20 @@ func ListeDept() {
 	r := csv.NewReader(file)
 	r.Comma = ','
 
-	// Utilisation d'un map pour éviter les doublons
+	// Utilisation d'une map pour éviter les doublons clé chaine de caractère et valeurs structure vide
 	listeDepartements := make(map[string]struct{})
 
 	// Lecture de chaque ligne du fichier
 	for {
+		// Lecture d'une ligne
 		record, err := r.Read()
+
+		// Si fin du fichier
 		if err == io.EOF {
 			break
 		}
+
+		// Si erreur lors de la lectuer d'une ligne
 		if err != nil {
 			fmt.Printf("Erreur lors de la lecture de la ligne : %v\n", err)
 			continue
@@ -61,6 +66,7 @@ func ListeDept() {
 				// Ligne incomplète, on passe à la suivante
 				continue
 			} else {
+				// Définition du code du département
 				codeDept := strings.TrimSpace(record[8][:2])
 				// Ajout dans le map
 				listeDepartements[codeDept] = struct{}{}

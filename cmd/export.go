@@ -7,7 +7,7 @@ import (
 	"github.com/spf13/cobra"
 )
 
-// exportCmd Est la commande exort ici les infos et propriétés
+// exportCmd Est la commande export ici ses informations et ses propriétés
 var exportCmd = &cobra.Command{
 	Use:   "export",
 	Short: "Cette commande sert à exporter les données.",
@@ -17,7 +17,6 @@ var exportCmd = &cobra.Command{
 		components.ReadCSVFileContentAndExtracter()
 
 		// Après le traitemnt, on exécute LogWriter pour enregistrer dansle fichier log
-		components.LogWriter()
 		defer components.LogWriter()
 
 		fmt.Println("Fin du traitement")
