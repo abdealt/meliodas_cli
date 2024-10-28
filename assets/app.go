@@ -1,4 +1,4 @@
-package config
+package assets
 
 // Nom de l'application
 const AppName = "meliodas"

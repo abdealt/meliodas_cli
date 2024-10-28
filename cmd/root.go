@@ -6,8 +6,9 @@ import (
 	"strings"
 
 	"github.com/abdealt/meliodas/components"
-	"github.com/abdealt/meliodas_cli/config"
+	"github.com/abdealt/meliodas_cli/assets"
 	"github.com/common-nighthawk/go-figure"
+	"github.com/joho/godotenv"
 	"github.com/spf13/cobra"
 )
 
@@ -15,6 +16,7 @@ import (
 var TotalElements int
 var ExtractedElements int
 var my_WI *components.WorkerImmeuble
+var err error
 
 // Définir la commande root
 var RootCmd = &cobra.Command{
@@ -22,6 +24,12 @@ var RootCmd = &cobra.Command{
 	Short: "\nUn CLI pour lire un fichier",
 	Long:  "\nMeliodas CLI est un outil en ligne de commande simple et efficace conçu pour automatiser le traitement de fichiers CSV.\nIl permet aux utilisateurs d'extraire rapidement des données spécifiques à partir de fichiers, sans avoir à ouvrir un logiciel complexe.\n\nSi vous souahitez changer d'opération, il faut changer le fichier de configuration, pour spécifier le (ou les) DÉPARTEMENT(S) de votre choix, ou le (ou les) codes INSEE(S) de votre choix.\n\n",
 	PersistentPreRun: func(cmd *cobra.Command, args []string) {
+		// Chargement du fichier .ENV
+		er := godotenv.Load("C:\\Users\\Utilisateur\\Desktop\\MELIODAS\\meliodas_cli\\.env")
+		if er != nil {
+			fmt.Println("Erreur lors du chargement du fichier.env")
+			os.Exit(1)
+		}
 		// Initialiser la configuration depuis le fichier .ENV
 		var mycfg components.Config
 		mycfg.File_immeuble = os.Getenv("SOURCE_FILE")
@@ -47,7 +55,6 @@ var RootCmd = &cobra.Command{
 		}
 
 		// Créer le WorkerImmeuble
-		var err error
 		my_WI, err = components.NewWorkerImmeuble(mycfg)
 		if err != nil {
 			fmt.Println("Erreur lors de la création de WorkerImmeuble:", err.Error())
@@ -57,7 +64,7 @@ var RootCmd = &cobra.Command{
 }
 
 func init() {
-	myLogo := figure.NewFigure(config.AppDisplayName, "", true)
+	myLogo := figure.NewFigure(assets.AppDisplayName, "", true)
 	myLogo.Print()
 }
 
