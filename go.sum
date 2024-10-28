@@ -1,5 +1,13 @@
-github.com/abdealt/meliodas v0.2.0 h1:BeqIIf13mo2PPfSFIObZ9lGGyJm4CpHxsbGMIA0sbC8=
-github.com/abdealt/meliodas v0.2.0/go.mod h1:E0YKZjQli+uu04+X8aU4lMz2GwyeWcdJXqv4BFU9Jdw=
+github.com/abdealt/meliodas v1.0.0 h1:Su1Afkpcr/r7g4s0hdSLj84V83qswPnCgJZ6RRlKmcY=
+github.com/abdealt/meliodas v1.0.0/go.mod h1:TnXHwWaCXcC+7VIbmVfBuO9C2Xg4/96zy/EU1xyR6mE=
+github.com/abdealt/meliodas v1.0.1 h1:x4nIodffgv8ZviH6rdjLmS5poaPOennowkgvqa2qQfs=
+github.com/abdealt/meliodas v1.0.1/go.mod h1:TnXHwWaCXcC+7VIbmVfBuO9C2Xg4/96zy/EU1xyR6mE=
+github.com/abdealt/meliodas v1.0.2 h1:OWds0ibL8STdsjjRVHsIs3AyALkKEqsQgcVjzW4w4kQ=
+github.com/abdealt/meliodas v1.0.2/go.mod h1:TnXHwWaCXcC+7VIbmVfBuO9C2Xg4/96zy/EU1xyR6mE=
+github.com/abdealt/meliodas v1.0.3 h1:5YPL2sVCxLcW8rpIjkOh6HszY3MTsrXhbFC2TdBSA5g=
+github.com/abdealt/meliodas v1.0.3/go.mod h1:TnXHwWaCXcC+7VIbmVfBuO9C2Xg4/96zy/EU1xyR6mE=
+github.com/abdealt/meliodas v1.1.0 h1:FX9IEnNIhv7u4XugoxOKsd52zM//H6IaQ07dYot91/c=
+github.com/abdealt/meliodas v1.1.0/go.mod h1:TnXHwWaCXcC+7VIbmVfBuO9C2Xg4/96zy/EU1xyR6mE=
 github.com/common-nighthawk/go-figure v0.0.0-20210622060536-734e95fb86be h1:J5BL2kskAlV9ckgEsNQXscjIaLiOYiZ75d4e94E6dcQ=
 github.com/common-nighthawk/go-figure v0.0.0-20210622060536-734e95fb86be/go.mod h1:mk5IQ+Y0ZeO87b858TlA645sVcEcbiX6YqP98kt+7+w=
 github.com/cpuguy83/go-md2man/v2 v2.0.4/go.mod h1:tgQtvFlXSQOSOSIRvRPT7W67SCa46tRHOmNcaadrF8o=

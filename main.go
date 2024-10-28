@@ -19,7 +19,7 @@ func main() {
 	// Boucle d'exécution continue
 	for {
 		// Demander une commande à l'utilisateur
-		fmt.Print("\nEntrez une commande ('export', 'stat', 'lstdpt' , 'help' ou 'exit' pour quitter) : ")
+		fmt.Print("\nEntrez une commande ('export', 'stat', 'lstdpt', 'help' ou 'exit' pour quitter) : ")
 		input, _ := reader.ReadString('\n') // Lire l'entrée utilisateur
 		input = strings.TrimSpace(input)    // Supprimer les espaces inutiles
 

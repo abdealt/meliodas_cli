@@ -3,7 +3,6 @@ package cmd
 import (
 	"fmt"
 
-	"github.com/abdealt/meliodas/components"
 	"github.com/spf13/cobra"
 )
 
@@ -14,11 +13,10 @@ var exportCmd = &cobra.Command{
 	Long:  `Cette commande sert à exporter les données. Grâce au fichier .env de Meliodas, on définit sur quoi on exporte, le fichier source et le lieu où seront extraites les données.`,
 	Run: func(cmd *cobra.Command, args []string) {
 		fmt.Println("Traitement en cours...")
-		components.ReadCSVFileContentAndExtracter()
-
-		// Après le traitemnt, on exécute LogWriter pour enregistrer dansle fichier log
-		defer components.LogWriter()
-
+		if err := my_WI.SuperreaderCSV(); err != nil {
+			fmt.Println("Erreur lors du traitement:", err)
+			return
+		}
 		fmt.Println("Fin du traitement")
 	},
 }
