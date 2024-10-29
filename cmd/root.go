@@ -36,22 +36,25 @@ var RootCmd = &cobra.Command{
 		mycfg.File_export = os.Getenv("EXTRACT_FILE")
 		mycfg.File_log = os.Getenv("LOG_FILE")
 
-		listeInseeAvant := os.Getenv("CITY_INSEE")
-		listeInseeApres := strings.Split(listeInseeAvant, ",")
-		listeDeptAvant := os.Getenv("DEPARTMENT_ID")
-		listeDeptApres := strings.Split(listeDeptAvant, ",")
-		mycfg.Lst_Insee = listeInseeApres
-		mycfg.Lst_Dprt = listeDeptApres
+		listeInsee := strings.TrimSpace(os.Getenv("CITY_INSEE"))
+		listeDept := strings.TrimSpace(os.Getenv("DEPARTMENT_ID"))
 
-		// Vérification des Informations
-		if mycfg.File_immeuble == "" {
-			fmt.Println("Veuillez spécifier un fichier source dans la configuration")
+		// Traitement des codes INSEE
+		if listeInsee != "" {
+			mycfg.Lst_Insee = strings.Split(listeInsee, ",")
+			// Enlever les espaces autour des codes
+			for i := range mycfg.Lst_Insee {
+				mycfg.Lst_Insee[i] = strings.TrimSpace(mycfg.Lst_Insee[i])
+			}
 		}
-		if mycfg.File_export == "" {
-			fmt.Println("Veuillez spécifier un chemin pour exporter dans la configuration")
-		}
-		if len(mycfg.Lst_Dprt) == 0 && len(mycfg.Lst_Insee) == 0 {
-			fmt.Println("Veuillez spécifier au moins un code INSEE ou un département dans la configuration")
+
+		// Traitement des départements
+		if listeDept != "" {
+			mycfg.Lst_Dprt = strings.Split(listeDept, ",")
+			// Enlever les espaces autour des départements
+			for i := range mycfg.Lst_Dprt {
+				mycfg.Lst_Dprt[i] = strings.TrimSpace(mycfg.Lst_Dprt[i])
+			}
 		}
 
 		// Créer le WorkerImmeuble

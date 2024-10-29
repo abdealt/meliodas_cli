@@ -18,6 +18,7 @@ var exportCmd = &cobra.Command{
 			return
 		}
 		fmt.Println("Fin du traitement")
+
 	},
 }
 

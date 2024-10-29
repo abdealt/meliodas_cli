@@ -12,10 +12,10 @@ var statCmd = &cobra.Command{
 	Short: "Cette commande sert à afficher les statistiques obtenues lors du dernier traitement.",
 	Run: func(cmd *cobra.Command, args []string) {
 		fmt.Println("Traitement en cours...")
-		// if err := my_WI.ExtractStatisticsFromCSV(); err != nil {
-		// 	fmt.Println("Erreur lors du traitement:", err)
-		// 	return
-		// }
+		if err := my_WI.ExtractStatisticsFromCSV(); err != nil {
+			fmt.Println("Erreur lors du traitement:", err)
+			return
+		}
 		fmt.Println("Fin du traitement")
 	},
 }
