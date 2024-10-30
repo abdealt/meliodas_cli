@@ -10,8 +10,8 @@ import (
 )
 
 // lstDptCmd représente la commande lstDpt
-var lstDptCmd = &cobra.Command{
-	Use:   "lstdpt",
+var lstdCmd = &cobra.Command{
+	Use:   "lstd",
 	Short: "Cette commande permet de lister tous les départements existants dans le fichier Source",
 	Run: func(cmd *cobra.Command, args []string) {
 		fmt.Println("Recherche des départements dans le fichier source...")
@@ -22,9 +22,9 @@ var lstDptCmd = &cobra.Command{
 
 // Fonction lors de l'appel de la commande
 func ExecuteLstDpt() error {
-	return lstDptCmd.Execute()
+	return lstdCmd.Execute()
 }
 
 func init() {
-	RootCmd.AddCommand(lstDptCmd)
+	RootCmd.AddCommand(lstdCmd)
 }

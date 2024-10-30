@@ -12,6 +12,7 @@ import (
 func main() {
 	// Afficher le logo défini dans le fichier root.go lors du démarrage
 	fmt.Println("Bienvenue dans Meliodas CLI!")
+	fmt.Print("\nSi vous avez besoin d'aide taper 'help' ou la touche entrée.")
 
 	// Créer un reader pour capturer l'entrée utilisateur en continu
 	reader := bufio.NewReader(os.Stdin)
@@ -19,7 +20,7 @@ func main() {
 	// Boucle d'exécution continue
 	for {
 		// Demander une commande à l'utilisateur
-		fmt.Print("\nEntrez une commande ('export', 'stat', 'lstdpt', 'help' ou 'exit' pour quitter) : ")
+		fmt.Print("\nEntrez une commande ('export', 'stat', 'lstd' ou 'exit' pour quitter) : ")
 		input, _ := reader.ReadString('\n') // Lire l'entrée utilisateur
 		input = strings.TrimSpace(input)    // Supprimer les espaces inutiles
 
