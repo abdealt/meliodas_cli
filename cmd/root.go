@@ -5,7 +5,7 @@ import (
 	"os"
 	"strings"
 
-	"github.com/abdealt/meliodas/components"
+	"github.com/abdealt/meliodas/csvExtracter"
 	"github.com/abdealt/meliodas_cli/assets"
 	"github.com/common-nighthawk/go-figure"
 	"github.com/joho/godotenv"
@@ -13,52 +13,46 @@ import (
 )
 
 // Variables globales
-var TotalElements int
-var ExtractedElements int
-var my_WI *components.WorkerImmeuble
-var err error
+var (
+	TotalElements     int
+	ExtractedElements int
+	my_WI             *csvExtracter.WorkerImmeuble
+	err               error
+	envPath           string // Nouveau flag pour le chemin du fichier .env
+)
 
 // Définir la commande root
 var RootCmd = &cobra.Command{
 	Use:   "meliodas",
 	Short: "\nUn CLI pour lire un fichier",
-	Long:  "\nMeliodas CLI est un outil en ligne de commande simple et efficace conçu pour automatiser le traitement de fichiers CSV.\nIl permet aux utilisateurs d'extraire rapidement des données spécifiques à partir de fichiers, sans avoir à ouvrir un logiciel complexe.\n\nSi vous souahitez changer d'opération, il faut changer le fichier de configuration, pour spécifier le (ou les) DÉPARTEMENT(S) de votre choix, ou le (ou les) codes INSEE(S) de votre choix.\n\n",
+	Long:  "\nMeliodas CLI est un outil en ligne de commande simple et efficace conçu pour automatiser le traitement de fichiers CSV...",
 	PersistentPreRun: func(cmd *cobra.Command, args []string) {
-		// Chargement du fichier .ENV
-		er := godotenv.Load("C:\\Users\\Utilisateur\\Desktop\\MELIODAS\\meliodas_cli\\.env")
-		if er != nil {
-			fmt.Println("Erreur lors du chargement du fichier.env")
+		// Charger le fichier .env à partir du chemin spécifié ou d'un chemin par défaut
+		if envPath == "" {
+			envPath = "C:\\Users\\Utilisateur\\Desktop\\MELIODAS\\meliodas_cli\\.env"
+		}
+		if err := godotenv.Load(envPath); err != nil {
+			fmt.Println("Erreur lors du chargement du fichier .env:", err)
 			os.Exit(1)
 		}
-		// Initialiser la configuration depuis le fichier .ENV
-		var mycfg components.Config
+
+		// Initialiser la configuration depuis le fichier .env
+		var mycfg csvExtracter.Config
 		mycfg.File_immeuble = os.Getenv("SOURCE_FILE")
 		mycfg.File_export = os.Getenv("EXTRACT_FILE")
 		mycfg.File_log = os.Getenv("LOG_FILE")
 
-		listeInsee := strings.TrimSpace(os.Getenv("CITY_INSEE"))
-		listeDept := strings.TrimSpace(os.Getenv("DEPARTMENT_ID"))
-
-		// Traitement des codes INSEE
-		if listeInsee != "" {
-			mycfg.Lst_Insee = strings.Split(listeInsee, ",")
-			// Enlever les espaces autour des codes
-			for i := range mycfg.Lst_Insee {
-				mycfg.Lst_Insee[i] = strings.TrimSpace(mycfg.Lst_Insee[i])
-			}
-		}
-
 		// Traitement des départements
+		listeDept := strings.TrimSpace(os.Getenv("DEPARTMENT_ID"))
 		if listeDept != "" {
 			mycfg.Lst_Dprt = strings.Split(listeDept, ",")
-			// Enlever les espaces autour des départements
 			for i := range mycfg.Lst_Dprt {
 				mycfg.Lst_Dprt[i] = strings.TrimSpace(mycfg.Lst_Dprt[i])
 			}
 		}
 
 		// Créer le WorkerImmeuble
-		my_WI, err = components.NewWorkerImmeuble(mycfg)
+		my_WI, err = csvExtracter.NewWorkerImmeuble(mycfg)
 		if err != nil {
 			fmt.Println("Erreur lors de la création de WorkerImmeuble:", err.Error())
 			return
@@ -67,6 +61,9 @@ var RootCmd = &cobra.Command{
 }
 
 func init() {
+	// Ajout du flag pour le fichier .env
+	RootCmd.PersistentFlags().StringVar(&envPath, "env", "", "Chemin vers le fichier .env")
+
 	myLogo := figure.NewFigure(assets.AppDisplayName, "", true)
 	myLogo.Print()
 }
