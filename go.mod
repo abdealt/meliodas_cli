@@ -14,4 +14,4 @@ require (
     github.com/spf13/pflag v1.0.5 // indirect
 )
 
-replace github.com/abdealt/meliodas => C:\Users\Utilisateur\Desktop\MELIODAS\meliodas
+replace github.com/abdealt/meliodas => C:\Users\Utilisateur\Desktop\MELIODAS\meliodas\src
